@@ -1,15 +1,15 @@
 /// Copyright (c) 2023 Kodeco Inc.
-///
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-///
+/// 
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
@@ -30,42 +30,29 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import Foundation
 import SwiftUI
 
-struct ContentView: View {
-	@Environment(\.verticalSizeClass) var verticalSizeClass
-	@Environment(\.horizontalSizeClass) var horizontalSizeClass
-	
-	@State private var redColor: Double = Constants.Defaults.colorValue
-	@State private var greenColor: Double = Constants.Defaults.colorValue
-  @State private var blueColor: Double = Constants.Defaults.colorValue
-	@State private var foregroundColor = Constants.Defaults.color
-
-  var body: some View {
-
-    VStack {
-			Text(Constants.LabelText.colorPickerLabel)
-        .font(.largeTitle)
-			if horizontalSizeClass == .compact && verticalSizeClass == .regular {
-				VStack {
-						MainView(redColor: $redColor, greenColor: $greenColor, blueColor: $blueColor, foregroundColor: $foregroundColor)
-					}
-			} else {
-				HStack {
-					MainView(redColor: $redColor, greenColor: $greenColor, blueColor: $blueColor, foregroundColor: $foregroundColor)
-				}
-			}
-    }
-		.background(Constants.Layout.backgroundColor)
-		.padding()
-
-  }
-}
-
-
-
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
-  }
+enum Constants {
+	enum Layout{
+		public static let roundedRectCornerRadius = CGFloat(0)
+		public static let buttonCornerRadius = CGFloat(15)
+		public static let lineWidth = CGFloat(2)
+		public static let rectBorderWidth = CGFloat(8)
+		public static let bodyPadding = CGFloat(10)
+		public static let textColor = Color("TextColor")
+		public static let backgroundColor = Color("BackgroundColor")
+	}
+	enum Defaults {
+		public static let colorValue = 0.0
+		public static let color = Color(red: 0, green: 0, blue: 0)
+		public static let rgbMaxValue = 255.0
+	}
+	enum LabelText {
+		public static let colorPickerLabel = "Color Picker"
+		public static let redLabel = "Red"
+		public static let blueLabel = "Blue"
+		public static let greenLabel = "Green"
+		public static let buttonTextLabel = "Set Color"
+	}
 }
